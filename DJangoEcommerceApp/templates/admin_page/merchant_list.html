@@ -1,0 +1,69 @@
+{% extends 'admin_page/base_temp.html' %}
+
+
+{% load static%}
+
+
+
+{% block title %}
+Merchant User List
+{% endblock title %}
+<!--END BLOCK FOR TITLE-->
+
+<!--BLOCK FOR CUSTOM CSS-->
+
+{% block custom_css %}
+{% endblock custom_css %}
+
+<!--END BLOCK FOR CUSTOM CSS-->
+
+<!-- BLOCK FOR PAGE TITLE-->
+{% block page_title%}
+  MerchantUser List
+{% endblock page_title%}
+<!--END BLOCK FOR PAGE TITLE-->
+
+{%block page_content%}
+
+<div class="row">
+{% for merchantuser in merchantuser_list %}
+  <div class="col-12 col-md-4 col-lg-4">
+                <article class="article article-style-c">
+                  <div class="article-header">
+                    <div class="article-image" data-background="/media/ {{ merchantuser.profile_pic}" style="background-image: url(&quot;/img/news/img13.jpg&quot;);">
+                    </div>
+                  </div>
+                  <div class="article-details">
+                    <div class="article-category"><a href="#">{{merchantuser.auth_user.id.username}}</a> <div class="bullet"></div> <a href="#">5 Days</a></div>
+                    <div class="article-title">
+                      <h2><a href="#">Excepteur sint occaecat cupidatat non proident</a></h2>
+                    </div>
+
+                    <p class="no-margin">
+
+                      <span class ="badge badge-primary"> <i class="fas fa-user-circle"></i> Name: {{merchantuser.auth_user_id.first_name}} {{merchantuser.auth_user_id.last_name}}</span><br>
+                      <span class ="badge badge-info"> <i class="fas fa-envelope-o"></i> Email: {{merchantuser.auth_user_id.email}} </span><br>
+                      <span class ="badge badge-primary"><i class="fas fa-file-o"></i> Gst: {{merchantuser.gst_details}} </span><br>
+                      <span class ="badge badge-primary"> <i class="fas fa-building"></i> Company Name: {{merchantuser.company_name}} </span><br>
+                      <span class ="badge badge-primary"> <i class=" fas fa-map-marker"></i> Address: {{merchantuser.address}} </span><br>
+                      <span class ="badge badge-primary"> <i class="fas fa-lock"></i> Added by Admin:{{merchantuser.is_added_by_admin}} </span>
+
+                    </p>
+                    <div class="article-user">
+                      <div class="article-user-details">
+                        <div class="article-cta" >
+                          <a href="{% url 'merchant_update' merchantuser.auth_user_id.id%}" class="btn btn-warning" style="float:right"> EDIT <i class= "fas fa-chevron-right"></i></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              </div>
+{% endfor %}
+</div>
+{% endblock page_content %}
+
+<!--BLOCK FOR CUSTOM JS-->
+{% block custom_js %}
+{% endblock custom_js %}
+<!--END BLOCK FOR CUSTOM JS-->
